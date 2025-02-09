@@ -58,6 +58,11 @@ class Root(Tk):
         self.e4.grid(column=3 , row=1)
 
 
+        # Listbox
+        self.list1= Listbox(self, height=6, width=35)
+        self.list1.grid(column=0, row=2, rowspan=6, columnspan=2 )
+
+
 
 window = Root()                                 
 window.mainloop()
