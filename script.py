@@ -146,6 +146,11 @@ class Root(Tk):
     def delete_command(self):
         database.delete(self.selected_tuple[0])
 
+    
+    def update_command():
+        database.update(self.selected_tuple[0],self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
+        print(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
+
 
 window = Root()                                 
 window.mainloop()
