@@ -9,7 +9,6 @@ Back-End:
     Entry Widget
     Scroll Bar
     Command Buttons
-    Tkinter -> Grid Method
 """
 
 from tkinter import *
@@ -100,8 +99,9 @@ class Root(Tk):
 
         # Define functions
 
-        def get_selected_row(self,event):
+    def get_selected_row(self,event):
         
+        try:
             #global selected_tuple
             # identifies the index of the user selected item in the list1. 
             index=self.list1.curselection()[0]
@@ -115,7 +115,17 @@ class Root(Tk):
             self.e3.delete(0,END)
             self.e3.insert(END,self.selected_tuple[3]) 
             self.e4.delete(0,END)
-            self.e4.insert(END,self.selected_tuple[4])   
+            self.e4.insert(END,self.selected_tuple[4])
+        except IndexError:
+            print("An error has occured") 
+
+
+    def view_command(self):
+        # ensures that everything is deleted from 0 to the end.
+        self.list1.delete(0,END)
+        for row in database.view():
+            # Add new rows at the end.
+            self.list1.insert(END, row)
             
 
 
