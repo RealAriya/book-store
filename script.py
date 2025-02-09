@@ -63,6 +63,14 @@ class Root(Tk):
         self.list1.grid(column=0, row=2, rowspan=6, columnspan=2 )
 
 
+        # Scrollbar
+        self.sb1 = Scrollbar(self)
+        self.sb1.grid(column=2, row=2, rowspan=6)
+
+        self.list1.configure(yscrollcommand=self.sb1.set)
+        self.sb1.configure(command=self.list1.yview)
+
+
 
 window = Root()                                 
 window.mainloop()
