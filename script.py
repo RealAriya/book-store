@@ -71,6 +71,33 @@ class Root(Tk):
         self.sb1.configure(command=self.list1.yview)
 
 
+        # Buttons
+        b1=Button(self, text="View All", width=12, command=self.view_command)
+        b1.grid(column=3, row=2)
+
+
+        b2=Button(self, text="Search", width=12, command=self.search_command)
+        b2.grid(column=3, row=3)
+
+
+        b3=Button(self, text="Add", width=12, command=self.add_command)
+        b3.grid(column=3, row=4)
+
+
+        b4=Button(self, text="Update", width=12, command=self.update_command)
+        b4.grid(column=3, row=5)
+
+        # bind method for the delete_command
+        self.list1.bind("<<ListboxSelect>>", self.get_selected_row)
+        
+        b5=Button(self, text="Delete", width=12, command=self.delete_command)
+        b5.grid(column=3, row=6)
+
+
+        b6=Button(self, text="Close", width=12, command=self.destroy)
+        b6.grid(column=3, row=7)
+
+
 
 window = Root()                                 
 window.mainloop()
