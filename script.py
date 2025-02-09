@@ -133,7 +133,13 @@ class Root(Tk):
         # uses get for a search method
         for row in database.search(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()):
             self.list1.insert(END, row)
-            
+
+
+    def add_command(self):
+        database.insert(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get())
+        # makes sure the list is empty
+        self.list1.delete(0,END)
+        self.list1.insert(END,(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()))    
 
 
 
