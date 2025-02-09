@@ -89,13 +89,34 @@ class Root(Tk):
 
         # bind method for the delete_command
         self.list1.bind("<<ListboxSelect>>", self.get_selected_row)
-        
+
         b5=Button(self, text="Delete", width=12, command=self.delete_command)
         b5.grid(column=3, row=6)
 
 
         b6=Button(self, text="Close", width=12, command=self.destroy)
         b6.grid(column=3, row=7)
+
+
+        # Define functions
+
+        def get_selected_row(self,event):
+        
+            #global selected_tuple
+            # identifies the index of the user selected item in the list1. 
+            index=self.list1.curselection()[0]
+            self.selected_tuple=self.list1.get(index)
+
+            # Shows in the entry fields the user selected row item.
+            self.e1.delete(0,END)
+            self.e1.insert(END,self.selected_tuple[1]) 
+            self.e2.delete(0,END)
+            self.e2.insert(END,self.selected_tuple[2]) 
+            self.e3.delete(0,END)
+            self.e3.insert(END,self.selected_tuple[3]) 
+            self.e4.delete(0,END)
+            self.e4.insert(END,self.selected_tuple[4])   
+            
 
 
 
