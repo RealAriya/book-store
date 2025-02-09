@@ -99,6 +99,9 @@ class Root(Tk):
         b6=Button(self, text="Close", width=12, command=self.destroy, bg="#4CAF50", fg="white")
         b6.grid(column=3, row=7, padx=10, pady=10)
 
+        # Initialize selected_tuple
+        self.selected_tuple = None
+
 
         # Define functions
 
@@ -129,14 +132,14 @@ class Root(Tk):
         self.list1.delete(0,END)
         for row in database.view():
             # Add new rows at the end.
-            self.list1.insert(END, " | ".join(map(str, row)))
+            self.list1.insert(END, row)
 
     
     def search_command(self):
         self.list1.delete(0,END)
         # uses get for a search method
         for row in database.search(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()):
-            self.list1.insert(END, " | ".join(map(str, row)))
+            self.list1.insert(END, row)
 
 
     def add_command(self):
@@ -144,21 +147,41 @@ class Root(Tk):
         # makes sure the list is empty
         self.list1.delete(0,END)
         self.list1.insert(END,(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()))    
+        
+    
         # Clear the entry fields
         self.e1.delete(0, END)
         self.e2.delete(0, END)
         self.e3.delete(0, END)
         self.e4.delete(0, END)
 
+        self.view_command()  # Refresh the list
+
 
     def delete_command(self):
         database.delete(self.selected_tuple[0])
+
+        # Refresh the list
+        self.view_command()  
+
+        # Clear the entry fields
+        self.e1.delete(0, END)
+        self.e2.delete(0, END)
+        self.e3.delete(0, END)
+        self.e4.delete(0, END)
 
     
     def update_command(self):
         database.update(self.selected_tuple[0],self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
         print(self.selected_tuple[0],self.selected_tuple[1],self.selected_tuple[2],self.selected_tuple[3],self.selected_tuple[4])
+        
+        # Clear the entry fields
+        self.e1.delete(0, END)
+        self.e2.delete(0, END)
+        self.e3.delete(0, END)
+        self.e4.delete(0, END)
 
+        self.view_command() # Refresh the list
 
 window = Root()                                 
 window.mainloop()
