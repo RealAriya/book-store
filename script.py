@@ -21,7 +21,7 @@ class Root(Tk):
         self.minsize(720,450)
         self.configure(background="#233D4D")
 
-
+        # Labels
         l1 = Label(self, text="Title")
         l1.grid(column=0, row=0)
 
@@ -36,6 +36,27 @@ class Root(Tk):
 
         l4 = Label(self, text="ISBN")
         l4.grid(column=2, row=1)
+
+
+        # Entries
+        self.title_text=StringVar()
+        self.e1 = Entry(self, textvariable=self.title_text)
+        self.e1.grid(column=1 , row=0)
+
+
+        self.author_text=StringVar()
+        self.e2 = Entry(self, textvariable=self.author_text)
+        self.e2.grid(column=3 , row=0)
+
+
+        self.year_text=StringVar()
+        self.e3 = Entry(self, textvariable=self.year_text)
+        self.e3.grid(column=1 , row=1)
+
+        self.isbn_text=StringVar()
+        self.e4 = Entry(self, textvariable=self.isbn_text)
+        self.e4.grid(column=3 , row=1)
+
 
 
 window = Root()                                 
