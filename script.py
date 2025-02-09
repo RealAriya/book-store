@@ -143,5 +143,9 @@ class Root(Tk):
 
 
 
+    def delete_command(self):
+        database.delete(self.selected_tuple[0])
+
+
 window = Root()                                 
 window.mainloop()
