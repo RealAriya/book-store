@@ -12,6 +12,9 @@ Back-End:
 """
 
 from tkinter import *
+from Query import Database 
+
+database = Database("books.db")
 
 class Root(Tk):
     def __init__(self):
@@ -116,8 +119,9 @@ class Root(Tk):
             self.e3.insert(END,self.selected_tuple[3]) 
             self.e4.delete(0,END)
             self.e4.insert(END,self.selected_tuple[4])
+
         except IndexError:
-            print("An error has occured") 
+            pass
 
 
     def view_command(self):
@@ -140,16 +144,20 @@ class Root(Tk):
         # makes sure the list is empty
         self.list1.delete(0,END)
         self.list1.insert(END,(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()))    
-
+        # Clear the entry fields
+        self.e1.delete(0, END)
+        self.e2.delete(0, END)
+        self.e3.delete(0, END)
+        self.e4.delete(0, END)
 
 
     def delete_command(self):
         database.delete(self.selected_tuple[0])
 
     
-    def update_command():
+    def update_command(self):
         database.update(self.selected_tuple[0],self.title_text.get(),self.author_text.get(),self.year_text.get(),self.isbn_text.get())
-        print(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
+        print(self.selected_tuple[0],self.selected_tuple[1],self.selected_tuple[2],self.selected_tuple[3],self.selected_tuple[4])
 
 
 window = Root()                                 
