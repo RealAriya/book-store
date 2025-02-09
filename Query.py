@@ -12,8 +12,11 @@ class Database:
     def insert(self, title, author, year, isbn):
         self.cur.execute("INSERT INTO book VALUES (NULL,?,?,?,?)" , (title, author, year, isbn))
         self.conn.commit()
+
     
-    
-    
+    def view(self):
+        self.cur.execute("SELECT * FROM book")
+        rows = self.cur.fetchall()
+        return rows
 
     
