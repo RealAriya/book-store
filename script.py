@@ -126,6 +126,13 @@ class Root(Tk):
         for row in database.view():
             # Add new rows at the end.
             self.list1.insert(END, row)
+
+    
+    def search_command(self):
+        self.list1.delete(0,END)
+        # uses get for a search method
+        for row in database.search(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.isbn_text.get()):
+            self.list1.insert(END, row)
             
 
 
