@@ -18,5 +18,9 @@ class Database:
         self.cur.execute("SELECT * FROM book")
         rows = self.cur.fetchall()
         return rows
-
     
+
+    def search(self, title="", author="", year="", isbn=""):
+        self.cur.execute("FROM book WHERE title=? OR author=? OR year=? OR isbn=?", (title, author, year, isbn))
+        rows = self.cur.fetchall()
+        return rows
